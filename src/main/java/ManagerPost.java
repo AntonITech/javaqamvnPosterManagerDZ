@@ -1,9 +1,12 @@
 public class ManagerPost {
     private String[] films = new String[0];
     private int limit;
-
     public ManagerPost() {
         this.limit = 10;
+    }
+
+    public ManagerPost(int limit) {
+        this.limit = limit;
     }
 
     public void addFilm(String film) {
@@ -27,7 +30,7 @@ public class ManagerPost {
             resultLength = limit;
         }
         String[] tmp = new String[resultLength];
-        for (int i = 0; i < tmp.length; i++) {
+         for (int i = 0; i < tmp.length; i++) {
             tmp[i] = films[films.length - 1 - i];
         }
         return tmp;
