@@ -1,5 +1,4 @@
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class ManagerPostTest {
@@ -64,27 +63,7 @@ public class ManagerPostTest {
     }
 
     @Test
-    public void testGetReversAllFilms() {
-
-        manager.addFilm("film 1");
-        manager.addFilm("film 2");
-        manager.addFilm("film 3");
-        manager.addFilm("film 4");
-        manager.addFilm("film 5");
-        manager.addFilm("film 6");
-        manager.addFilm("film 7");
-        manager.addFilm("film 8");
-        manager.addFilm("film 9");
-        manager.addFilm("film 10");
-
-        String[] expected = {"film 10", "film 9", "film 8", "film 7", "film 6", "film 5", "film 4", "film 3", "film 2", "film 1"};
-        String[] actual = manager.findLast();
-
-        Assertions.assertArrayEquals(expected, actual);
-    }
-
-    @Test
-    public void testGetLastFiveFilmsRevers() {
+    public void testGetLastFilmsUnderLimit() {
 
         manager.addFilm("film 1");
         manager.addFilm("film 2");
@@ -99,19 +78,18 @@ public class ManagerPostTest {
     }
 
     @Test
-    public void testGetLastAllFilms() {
+    public void testGetLimitFilms() {
 
         manager.addFilm("film 1");
         manager.addFilm("film 2");
         manager.addFilm("film 3");
         manager.addFilm("film 4");
-        manager.addFilm("film 5");                 //ДОБАВЛЯЕТ БОЛЬШЕ ЛИМИТА
+        manager.addFilm("film 5");
         manager.addFilm("film 6");
         manager.addFilm("film 7");
         manager.addFilm("film 8");
         manager.addFilm("film 9");
         manager.addFilm("film 10");
-        manager.addFilm("film 11");
 
         String[] expected = {"film 10", "film 9", "film 8", "film 7", "film 6", "film 5", "film 4", "film 3", "film 2", "film 1"};
         String[] actual = manager.findLast();
@@ -120,17 +98,43 @@ public class ManagerPostTest {
     }
 
     @Test
-    public void testGetLastFilmsMinLimit() {
+    public void testGetOneFilm() {
 
-        manager.addFilm("film 7");
-        manager.addFilm("film 8");
-        manager.addFilm("film 9");
-        manager.addFilm("film 10");
+        manager.addFilm("film 1");
 
-        String[] expected = {"film 10", "film 9", "film 8", "film 7"};
+        String[] expected = {"film 1"};
         String[] actual = manager.findLast();
 
         Assertions.assertArrayEquals(expected, actual);
     }
 
+    @Test
+    public void testGetLimitLastFilms() {
+
+        manager.addFilm("film 1");
+        manager.addFilm("film 2");
+        manager.addFilm("film 3");
+        manager.addFilm("film 4");
+        manager.addFilm("film 5");
+        manager.addFilm("film 6");
+        manager.addFilm("film 7");
+        manager.addFilm("film 8");
+        manager.addFilm("film 9");
+        manager.addFilm("film 10");
+        manager.addFilm("film 11");
+
+        String[] expected = {"film 11", "film 10", "film 9", "film 8", "film 7", "film 6", "film 5", "film 4", "film 3", "film 2"};
+        String[] actual = manager.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void testGetEmptyFilms() {
+
+        String[] expected = {};
+        String[] actual = manager.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
 }
